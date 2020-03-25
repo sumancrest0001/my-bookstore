@@ -1,8 +1,16 @@
 import React from 'react';
-import classes from './BookForm.module.css';
+import classes from './BooksForm.module.css';
 
 const bookForm = () => {
   const catagories = ['Action', 'Biography', 'History', 'Horror', 'Kids', 'Learning', 'Sci-Fi'];
+  const renderOptions = catagories.map(option => (
+    <option
+      key={option}
+      value={option}
+    >
+      {option}
+    </option>
+  ));
 
   return (
     <div className={classes.Form}>
@@ -10,13 +18,7 @@ const bookForm = () => {
         <h3>Add new to Bookstore</h3>
         <input placeholder="Enter Book Title" type="text" required />
         <select>
-          <option value="Action">Action</option>
-          <option value="Biography">Biography</option>
-          <option value="History">History</option>
-          <option value="Horror">Horror</option>
-          <option value="Kids">Kids</option>
-          <option value="Learning">Learning</option>
-          <option value="Sci-Fi">Sci-Fi</option>
+          {renderOptions}
         </select>
         <button name="add" type="submit">ADD</button>
       </form>
