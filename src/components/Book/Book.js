@@ -7,7 +7,7 @@ const book = ({ bookItem: { id, title, category }, clicked }) => (
     <td>{id}</td>
     <td>{title}</td>
     <td>{category}</td>
-    <td><button id={id} type="submit" onClick={clicked}>Remove Book</button></td>
+    <td><button id={id} type="button" onClick={clicked}>Remove Book</button></td>
   </tr>
 );
 
