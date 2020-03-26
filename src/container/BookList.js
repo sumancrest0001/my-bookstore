@@ -3,9 +3,11 @@ import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
 import classes from './BookList.module.css';
 import Book from '../components/Book/Book';
+import { removeBook } from '../actions/index';
 
-const bookList = ({ books }) => {
-  const renderBooks = books.map(book => <Book key={book.id} bookItem={book} />);
+const bookList = ({ books, deleteBook }) => {
+  const handleRemoveBook = book => deleteBook(book);
+
   return (
     <table className={classes.BookList}>
       <tbody>
@@ -13,8 +15,9 @@ const bookList = ({ books }) => {
           <th>Book ID</th>
           <th>Title</th>
           <th>Category</th>
+          <th>Remove</th>
         </tr>
-        {renderBooks}
+        {books.map(book => <Book key={book.id} bookItem={book} clicked={() => handleRemoveBook(book)} />)}
       </tbody>
     </table>
   );
@@ -22,10 +25,15 @@ const bookList = ({ books }) => {
 
 bookList.propTypes = {
   books: PropTypes.instanceOf(Array).isRequired,
+  deleteBook: PropTypes.func.isRequired,
 };
 
 const mapStateToProps = state => ({
   books: state.books,
 });
 
-export default connect(mapStateToProps)(bookList);
+const mapDispatchToProps = dispatch => ({
+  deleteBook: data => { dispatch(removeBook(data)); },
+});
+
+export default connect(mapStateToProps, mapDispatchToProps)(bookList);
