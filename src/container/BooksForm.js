@@ -29,8 +29,8 @@ class BookForm extends Component {
   };
 
   render() {
-    const catagories = ['Action', 'Biography', 'History', 'Horror', 'Kids', 'Learning', 'Sci-Fi'];
     const { title, category } = this.state;
+    const { categories } = this.props;
     return (
       <div className={classes.Form}>
         <form>
@@ -38,7 +38,7 @@ class BookForm extends Component {
           <input id="title" placeholder="Enter Book Title" type="text" value={title} onChange={this.handleChange} required />
           <select id="category" value={category} onChange={this.handleChange}>
             {
-              catagories.map(option => (
+              categories.map(option => (
                 <option
                   key={option}
                   value={option}
@@ -61,6 +61,7 @@ const mapDispatchToProps = dispatch => ({
 
 BookForm.propTypes = {
   addBook: PropTypes.func.isRequired,
+  categories: PropTypes.instanceOf(Array).isRequired,
 };
 
 export default connect(null, mapDispatchToProps)(BookForm);

@@ -5,10 +5,12 @@ import BookForm from './container/BooksForm';
 import './App.css';
 
 function App() {
+  const category = ['Action', 'Biography', 'History', 'Horror', 'Kids', 'Learning', 'Sci-Fi'];
+
   return (
     <div className="App">
-      <Booklist />
-      <BookForm />
+      <Booklist categories={category} />
+      <BookForm categories={category} />
     </div>
   );
 }

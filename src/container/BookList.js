@@ -5,10 +5,25 @@ import classes from './BookList.module.css';
 import Book from '../components/Book/Book';
 import { removeBook } from '../actions/index';
 
-const bookList = ({ books, deleteBook }) => {
+const bookList = ({ books, deleteBook, categories }) => {
   const handleRemoveBook = book => deleteBook(book);
 
   return (
+    <div className={classes.Filter}>
+      <p>Select books by category</p>
+      <select id="category" value="Learning" onChange={this.handleChange}>
+        {
+          categories.map(option => (
+            <option
+              key={option}
+              value={option}
+            >
+              {option}
+            </option>
+          ))
+        }
+      </select>
+    </div>
     <table className={classes.BookList}>
       <tbody>
         <tr>
