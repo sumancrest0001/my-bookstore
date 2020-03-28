@@ -1,13 +1,15 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import classes from './CategoryFilter.module.css';
+import '../../../node_modules/font-awesome/css/font-awesome.min.css';
 
 const categoryFilter = ({ category, categoryHandler }) => {
   const handleFilter = event => { categoryHandler(event.target.value); };
   return (
     <div className={classes.Filter}>
-      <p>Select books by category</p>
-      <select id="category" value="Learning" onChange={handleFilter}>
+      <div className={classes.BookstoreCMS}>Bookstore CMS</div>
+      <div className={classes.Books}>BOOKS</div>
+      <select id="category" className={classes.Category} value="Learning" onChange={handleFilter}>
         {
           [...category, 'All'].map(option => (
             <option
@@ -19,6 +21,7 @@ const categoryFilter = ({ category, categoryHandler }) => {
           ))
         }
       </select>
+      <div><i className={`fa fa-user-circle ${classes.ProfilePic}`} /></div>
     </div>
   );
 };

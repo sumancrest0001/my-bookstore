@@ -1,7 +1,6 @@
 import React from 'react';
 import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
-import classes from './BookList.module.css';
 import Book from '../components/Book/Book';
 import CategoryFilter from '../components/CategoryFilter/CategoryFilter';
 import { removeBook, filterBooks } from '../actions/index';
@@ -39,17 +38,7 @@ const bookList = ({
         categoryHandler={handleFilterChange}
         category={categories}
       />
-      <table className={classes.BookList}>
-        <tbody>
-          <tr>
-            <th>Book ID</th>
-            <th>Title</th>
-            <th>Category</th>
-            <th>Remove</th>
-          </tr>
-          {renderBooks}
-        </tbody>
-      </table>
+      {renderBooks}
     </div>
   );
 };
