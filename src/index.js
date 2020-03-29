@@ -22,7 +22,6 @@ const state = {
     },
   ],
 };
-
 const store = createStore(rootReducer, state);
 
 ReactDOM.render(
