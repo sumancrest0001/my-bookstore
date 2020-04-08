@@ -34,9 +34,9 @@ class BookForm extends Component {
     return (
       <div className={classes.Form}>
         <form>
-          <h3>Add new to Bookstore</h3>
-          <input id="title" placeholder="Enter Book Title" type="text" value={title} onChange={this.handleChange} required />
-          <select id="category" value={category} onChange={this.handleChange}>
+          <h3 className={classes.Title}>Add new to Bookstore</h3>
+          <input className={[classes.Input, classes.Text].join(' ')} id="title" placeholder="Enter Book Title" type="text" value={title} onChange={this.handleChange} required />
+          <select className={[classes.Select, classes.Text].join(' ')} id="category" value={category} onChange={this.handleChange}>
             {
               categories.map(option => (
                 <option
@@ -48,7 +48,7 @@ class BookForm extends Component {
               ))
             }
           </select>
-          <button name="add" type="button" onClick={this.handleSubmit}>ADD</button>
+          <button className={classes.Button} name="add" type="button" onClick={this.handleSubmit}>ADD</button>
         </form>
       </div>
     );
