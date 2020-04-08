@@ -1,10 +1,17 @@
 import React from 'react';
-import './App.css';
+import Booklist from './container/BookList';
+import BookForm from './container/BooksForm';
+
+import classes from './App.module.css';
 
 function App() {
+  const category = ['Action', 'Biography', 'History', 'Horror', 'Kids', 'Learning', 'Sci-Fi'];
+
   return (
     <div className="App">
-      <p>Welcome to my bookstore.</p>
+      <Booklist categories={category} />
+      <div className={classes.HorizontalLine} />
+      <BookForm categories={category} />
     </div>
   );
 }
