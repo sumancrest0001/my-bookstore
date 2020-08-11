@@ -1,4 +1,5 @@
 import React from 'react';
+import { NavLink } from 'react-router-dom';
 import PropTypes from 'prop-types';
 import classes from './CategoryFilter.module.css';
 import '../../../node_modules/font-awesome/css/font-awesome.min.css';
@@ -7,8 +8,23 @@ const categoryFilter = ({ bookCategories, categoryHandler }) => {
   const handleFilter = event => { categoryHandler(event.target.value); };
   return (
     <div className={classes.Filter}>
-      <div className={classes.BookstoreCMS}>Bookstore CMS</div>
-      <div className={classes.Books}>Add book</div>
+      <NavLink
+        to="/auth"
+        exact
+        className={classes.Navlink}
+        activeClassName={classes.active}
+      >
+        <div className={classes.BookstoreCMS}>Bookstore CMS</div>
+      </NavLink>
+      <NavLink
+        to="/auth/new-book"
+        exact
+        className={classes.Navlink}
+        activeClassName={classes.active}
+      >
+        <div className={classes.Books}>Add book</div>
+      </NavLink>
+
       <select
         id="category"
         className={classes.Category}

@@ -5,14 +5,13 @@ import Book from '../../../components/AdminComponents/Book/Book';
 const bookList = ({
   deleteBook, availableBooks,
 }) => {
-
   let renderBooks = <p>Books of this category are not found</p>;
   if (availableBooks.length >= 0) {
     renderBooks = availableBooks.map(book => (
       <Book
-        key={book.id}
+        key={book.isbn}
         bookItem={book}
-        clicked={() => deleteBook(book)}
+        clicked={deleteBook}
       />
     ));
   }
@@ -28,3 +27,5 @@ bookList.propTypes = {
   availableBooks: PropTypes.instanceOf(Array).isRequired,
   deleteBook: PropTypes.func.isRequired,
 };
+
+export default bookList;

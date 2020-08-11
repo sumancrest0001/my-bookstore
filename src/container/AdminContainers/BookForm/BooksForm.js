@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
+import { storage } from '../../../firebase/index';
 import { createBook } from '../../../actions/index';
 import classes from './BooksForm.module.css';
 
@@ -19,7 +20,9 @@ class BookForm extends Component {
         price: '',
         image: '',
         status: '',
+        url: '',
       },
+      progress: 0,
     };
   }
 
@@ -30,17 +33,47 @@ class BookForm extends Component {
     this.setState({ book: updatedBook });
   };
 
+  handleFileChange = event => {
+    if (event.target.files[0]) {
+      const { book } = this.state;
+      let updatedBook = book;
+      updatedBook = {
+        ...updatedBook,
+        image: event.target.files[0],
+      };
+      this.setState({ book: updatedBook });
+    }
+  };
+
   handleSubmit = () => {
     const { addBook } = this.props;
     const { book } = this.state;
+    const uploadImage = storage.ref(`images/${book.image.name}`).put(book.image);
+    uploadImage.on('state_changed',
+      snapshot => {
+        const progress = Math.round((snapshot.bytesTransferred / snapshot.totalBytes) * 100);
+        this.setState({ progress });
+      },
+      error => {
+        console.log(error);
+      },
+      () => {
+        storage.ref('images').child(book.image.name).getDownloadURL().then(bookImageUrl => {
+          const { book } = this.state;
+          const updatedBook = {
+            ...book,
+            url: bookImageUrl,
+          };
+          this.setState({ book: updatedBook });
+        });
+      });
     addBook(book);
-    console.log(book);
   };
 
   render() {
-    const { book } = this.state;
+    const { book, progress } = this.state;
     const {
-      isbn, title, description, category, genre, author, publisher, price, image, status,
+      isbn, title, description, category, genre, author, publisher, price, status,
     } = book;
     const { categories, bookCondition } = this.props;
     return (
@@ -145,11 +178,10 @@ class BookForm extends Component {
               ))
             }
           </select>
+          <progress value={progress} max="100" />
           <input
             type="file"
-            id="image"
-            value={image}
-            onChange={this.handleChange}
+            onChange={this.handleFileChange}
             required
           />
           <button

@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
+import { Route, Switch } from 'react-router-dom';
 import PropTypes from 'prop-types';
 
 import BookList from '../BookList/BookList';
@@ -28,11 +29,10 @@ class AdminMainContainer extends Component {
           bookCategories={category}
           categoryHandler={filteredCategory => categoryFilter(filteredCategory)}
         />
-        <BookList
-          deleteBook={deleteBook}
-          availableBooks={books}
-        />
-        <BookForm status={bookStatus} />
+        <Switch>
+          <Route path="/auth/new-book" exact render={(props) => <BookForm bookCondition={bookStatus} categories={category} />} />
+          <Route path="/auth" exact render={(props) => <BookList {...props} deleteBook={deleteBook} availableBooks={books} />} />
+        </Switch>
       </main>
     );
   }
