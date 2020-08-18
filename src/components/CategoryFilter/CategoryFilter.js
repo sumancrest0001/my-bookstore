@@ -43,6 +43,13 @@ const categoryFilter = ({ bookCategories, categoryHandler }) => {
         }
       </select>
       <div><i className={`fa fa-user-circle ${classes.ProfilePic}`} /></div>
+      <NavLink
+        to="/logout"
+        className={classes.Navlink}
+        activeClassName={classes.active}
+      >
+        Logout
+      </NavLink>
     </div>
   );
 };

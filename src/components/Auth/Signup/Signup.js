@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import FormInput from '../../FormInput/FormInput';
-import classes from './Signin.module.scss';
+import classes from '../Signin/Signin.module.scss';
 
 class Signup extends Component {
   constructor(props) {
