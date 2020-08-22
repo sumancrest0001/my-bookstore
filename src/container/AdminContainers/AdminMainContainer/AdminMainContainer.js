@@ -11,7 +11,7 @@ import { removeBook, filterBooks } from '../../../actions/index';
 
 const adminMainContainer = props => {
   const {
-    books, deleteBook, filter, categoryFilter, match,
+    books, deleteBook, filter, categoryFilter,
   } = props;
 
   const filteredBooks = () => {
@@ -31,8 +31,8 @@ const adminMainContainer = props => {
         categoryHandler={filteredCategory => categoryFilter(filteredCategory)}
       />
       <Switch>
-        <Route path="/auth/new-book" exact render={(props) => <BookForm bookCondition={bookStatus} categories={category} />} />
-        <Route path={match.path} exact render={(props) => <BookList {...props} deleteBook={deleteBook} availableBooks={books} />} />
+        <Route path="/auth/new-book" exact render={() => <BookForm bookCondition={bookStatus} categories={category} />} />
+        <Route path="/auth" exact render={() => <BookList deleteBook={deleteBook} availableBooks={books} />} />
       </Switch>
     </main>
   );
@@ -55,7 +55,6 @@ adminMainContainer.propTypes = {
   deleteBook: PropTypes.func.isRequired,
   categoryFilter: PropTypes.func.isRequired,
   filter: PropTypes.string.isRequired,
-  match: PropTypes.instanceOf(Object).isRequired,
 };
 
 export default connect(mapStateToProps, mapDispatchToProps)(adminMainContainer);
