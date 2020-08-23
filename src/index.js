@@ -1,33 +1,18 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
-import { createStore } from 'redux';
 import { Provider } from 'react-redux';
-import rootReducer from './reducers/index';
+import { BrowserRouter } from 'react-router-dom';
+import store from './redux/store';
 import App from './App';
 
 import './index.css';
 import * as serviceWorker from './serviceWorker';
 
-
-const state = {
-  books: [
-    {
-      id: Math.random(),
-      title: 'The Help',
-      category: 'History',
-    },
-    {
-      id: Math.random(),
-      title: 'Charlotte\'s Web',
-      category: 'Kids',
-    },
-  ],
-};
-const store = createStore(rootReducer, state);
-
 ReactDOM.render(
   <Provider store={store}>
-    <App />
+    <BrowserRouter>
+      <App />
+    </BrowserRouter>
   </Provider>,
   document.getElementById('root'),
 );

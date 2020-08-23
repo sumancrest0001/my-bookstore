@@ -1,17 +1,17 @@
 import React from 'react';
 import { connect } from 'react-redux';
-import { Route, Switch } from 'react-router-dom';
+import { Route, Switch, Redirect } from 'react-router-dom';
 import PropTypes from 'prop-types';
 
 import BookList from '../BookList/BookList';
 import BookForm from '../BookForm/BooksForm';
 import CategoryFilter from '../../../components/CategoryFilter/CategoryFilter';
 import { category, bookStatus } from '../../../utilities/utility';
-import { removeBook, filterBooks } from '../../../actions/index';
+import { removeBook, filterBooks } from '../../../redux/actions/index';
 
 const adminMainContainer = props => {
   const {
-    books, deleteBook, filter, categoryFilter,
+    books, deleteBook, filter, categoryFilter, adminStatus,
   } = props;
 
   const filteredBooks = () => {
@@ -24,8 +24,11 @@ const adminMainContainer = props => {
     return updatedBooks;
   };
 
+  const renderComponent = adminStatus ? '' : <Redirect to="/" />;
+  console.log(adminStatus);
   return (
     <main>
+      {renderComponent}
       <CategoryFilter
         bookCategories={category}
         categoryHandler={filteredCategory => categoryFilter(filteredCategory)}
@@ -41,7 +44,7 @@ const adminMainContainer = props => {
 
 const mapStateToProps = state => ({
   books: state.books,
-  filter: state.filter,
+  adminStatus: state.user.admin,
 });
 
 const mapDispatchToProps = dispatch => ({

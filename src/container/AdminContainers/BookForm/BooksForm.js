@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import { storage } from '../../../firebase/index';
-import { createBook } from '../../../actions/index';
+import { createBook } from '../../../redux/actions/index';
 import classes from './BooksForm.module.css';
 
 class BookForm extends Component {
