@@ -10,3 +10,4 @@ export const SET_BOOK_FILTER = 'SET_BOOK_FILTER';
 // cart actionTypes
 
 export const TOGGLE_CART_DROPDOWN = 'TOGGLE_CART_DROPDOWN';
+export const ADD_BOOK_ITEM = 'ADD_BOOK_ITEM';

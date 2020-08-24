@@ -1,0 +1,40 @@
+.singleBook {
+  display: flex;
+  flex-direction: column;
+  border-radius: 5px;
+  text-align: start;
+
+  &__image {
+    width: 100%;
+    height: 250px;
+  }
+
+  &__body {
+    padding: 1.5rem 5px;
+  }
+
+  &__title {
+    font-size: 18px;
+    font-weight: 500;
+    margin-bottom: 5px;
+  }
+
+  &__author {
+    font-size: 14px;
+    color: #cf450e;
+    font-style: italic;
+    font-weight: 600;
+  }
+
+  &__price {
+    margin: 1rem 0;
+    font-weight: 600;
+  }
+
+  &__buttons {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-between;
+  }
+}
