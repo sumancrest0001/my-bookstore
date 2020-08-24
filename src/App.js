@@ -6,6 +6,7 @@ import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
 import HomePage from './container/HomePage/HomePage';
 import AdminMainContainer from './container/AdminContainers/AdminMainContainer/AdminMainContainer';
+import Header from './components/Header/Header';
 import Signin from './components/Auth/Signin/Signin';
 import Signup from './components/Auth/Signup/Signup';
 import Logout from './components/Auth/Logout/Logout';
@@ -43,6 +44,7 @@ class App extends Component {
   render() {
     return (
       <div className={classes.App}>
+        <Header />
         <Switch>
           <Route path="/signin" exact component={Signin} />
           <Route path="/register" exact component={Signup} />

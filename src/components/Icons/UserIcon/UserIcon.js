@@ -1,14 +1,14 @@
 import React from 'react';
+import { NavLink } from 'react-router-dom';
 import { connect } from 'react-redux';
 import { ReactComponent as User } from '../../../images/stick-man.svg';
 import '../CartIcon.scss';
 
 const userIcon = ({ currentUser }) => {
+  console.log(currentUser);
   const componentToRender = currentUser ? (
-    <div>
-      {currentUser.displayName}
-    </div>
-  ) : (<User className="icon__item" />);
+    <NavLink to="/logout" exact>Logout</NavLink>
+  ) : (<NavLink to="/signin" exact><User className="icon__item" /></NavLink>);
 
   return (
     <div>
@@ -17,8 +17,8 @@ const userIcon = ({ currentUser }) => {
   );
 };
 
-const mapStateToProps = user => ({
-  currentUser: user.currentUser,
+const mapStateToProps = state => ({
+  currentUser: state.user.currentUser,
 });
 
 export default connect(mapStateToProps)(userIcon);

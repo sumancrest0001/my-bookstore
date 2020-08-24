@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import { Link } from 'react-router-dom';
 import FormInput from '../../FormInput/FormInput';
 import CustomButton from '../../CustomButton/CustomButton';
 import { signInWithGoogle, auth } from '../../../firebase/index';
@@ -38,6 +39,10 @@ class Signin extends Component {
         <form onSubmit={this.handleSubmit} className={classes.Form}>
           <FormInput type="email" name="email" label="email" value={email} handleChange={this.handleChange} required />
           <FormInput type="password" name="password" label="password" value={password} handleChange={this.handleChange} required />
+          <p className={classes.signupLink}>
+            Do not have an account?
+            <Link to="/register" exact>Sign up now</Link>
+          </p>
           <div className={classes.buttons}>
             <CustomButton type="submit">Sign in</CustomButton>
             <CustomButton onClick={signInWithGoogle} isGoogleSignIn>Sign in with google</CustomButton>
