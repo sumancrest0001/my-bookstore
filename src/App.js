@@ -10,6 +10,7 @@ import Header from './components/Header/Header';
 import Signin from './components/Auth/Signin/Signin';
 import Signup from './components/Auth/Signup/Signup';
 import Logout from './components/Auth/Logout/Logout';
+import CheckoutPage from './components/CheckoutPage/CheckoutPage';
 import { auth, createUserProfileDocument } from './firebase/index';
 import { setCurrentUser } from './redux/actions/user.actions';
 import './App.scss';
@@ -49,6 +50,7 @@ class App extends Component {
           <Route path="/register" exact component={Signup} />
           <Route path="/logout" exact component={Logout} />
           <Route path="/auth" component={AdminMainContainer} />
+          <Route path="/checkout" component={CheckoutPage} />
           <Route path="/" exact component={HomePage} />
         </Switch>
       </div>
