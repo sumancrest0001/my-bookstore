@@ -5,6 +5,11 @@ export const toggleCartDropdown = () => ({
 });
 
 export const addBookItem = bookItem => ({
-  type: actionTypes.ADD_BOOK_ITEM,
+  type: actionTypes.ADD_CART_ITEM,
+  bookItem,
+});
+
+export const removeBookItem = bookItem => ({
+  type: actionTypes.REMOVE_CART_ITEM,
   bookItem,
 });

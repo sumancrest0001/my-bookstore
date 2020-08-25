@@ -13,10 +13,16 @@ const cartReducer = (state = INITIAL_STATE, action) => {
         ...state,
         hidden: !state.hidden,
       };
-    case actionTypes.ADD_BOOK_ITEM:
+    case actionTypes.ADD_CART_ITEM:
       return {
         ...state,
         cartItems: addItemToCart(state.cartItems, action.bookItem),
+      };
+
+    case actionTypes.REMOVE_CART_ITEM:
+      return {
+        ...state,
+        cartItems: state.cartItems.filter(cartItem => cartItem.id !== action.bookItem.id),
       };
 
     default:
