@@ -3,7 +3,7 @@ import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import { storage } from '../../../firebase/index';
 import { createBook } from '../../../redux/actions/index';
-import classes from './BooksForm.module.css';
+import './BooksForm.scss';
 
 class BookForm extends Component {
   constructor(props) {
@@ -77,20 +77,20 @@ class BookForm extends Component {
     } = book;
     const { categories, bookCondition } = this.props;
     return (
-      <div className={classes.Form}>
-        <h3 className={classes.Title}>Add new to Bookstore</h3>
+      <div className="Form">
+        <h3 className="Title">Add new to Bookstore</h3>
         <form>
           <input
             type="number"
             id="isbn"
-            className={[classes.Input, classes.InputFields, classes.Text].join(' ')}
+            className="Input InputFields"
             placeholder="ISBN number"
             value={isbn}
             onChange={this.handleChange}
             required
           />
           <input
-            className={[classes.Input, classes.InputFields, classes.Text].join(' ')}
+            className="Input InputFields Text"
             id="title"
             placeholder="Enter Book Title"
             type="text"
@@ -101,14 +101,14 @@ class BookForm extends Component {
           <input
             type="textarea"
             id="description"
-            className={[classes.Input, classes.InputFields, classes.Text].join(' ')}
+            className="Input, InputFields, Text"
             placeholder="Add short description"
             value={description}
             onChange={this.handleChange}
             required
           />
           <select
-            className={[classes.Select, classes.InputFields, classes.Text].join(' ')}
+            className="Select, InputFields, classes.Text"
             id="category"
             value={category}
             onChange={this.handleChange}
@@ -127,7 +127,7 @@ class BookForm extends Component {
           <input
             type="text"
             id="genre"
-            className={[classes.Input, classes.InputFields, classes.Text].join(' ')}
+            className="Input InputFields Text"
             placeholder="Add genre"
             value={genre}
             onChange={this.handleChange}
@@ -136,7 +136,7 @@ class BookForm extends Component {
           <input
             type="text"
             id="author"
-            className={[classes.Input, classes.InputFields, classes.Text].join(' ')}
+            className="Input InputFields Text"
             placeholder="Author please"
             value={author}
             onChange={this.handleChange}
@@ -145,7 +145,7 @@ class BookForm extends Component {
           <input
             type="text"
             id="publisher"
-            className={[classes.Input, classes.InputFields, classes.Text].join(' ')}
+            className="Input InputFields Text"
             placeholder="Publishername"
             value={publisher}
             onChange={this.handleChange}
@@ -155,14 +155,14 @@ class BookForm extends Component {
             type="number"
             step="0.01"
             id="price"
-            className={[classes.Input, classes.InputFields, classes.Text].join(' ')}
+            className="Input InputFields Text"
             placeholder="Enter price"
             value={price}
             onChange={this.handleChange}
             required
           />
           <select
-            className={[classes.Select, classes.InputFields, classes.Text].join(' ')}
+            className="Select InputFields Text"
             id="status"
             value={status}
             onChange={this.handleChange}
@@ -185,7 +185,7 @@ class BookForm extends Component {
             required
           />
           <button
-            className={[classes.Button, classes.SaveBtn].join(' ')}
+            className="Button SaveBtn"
             type="button"
             onClick={this.handleSubmit}
           >

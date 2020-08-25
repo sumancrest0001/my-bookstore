@@ -1,33 +1,33 @@
 import React from 'react';
 import { NavLink } from 'react-router-dom';
 import PropTypes from 'prop-types';
-import classes from './CategoryFilter.module.css';
+import './CategoryFilter.scss';
 import '../../../node_modules/font-awesome/css/font-awesome.min.css';
 
 const categoryFilter = ({ bookCategories, categoryHandler }) => {
   const handleFilter = event => { categoryHandler(event.target.value); };
   return (
-    <div className={classes.Filter}>
+    <div className="Filter">
       <NavLink
         to="/auth"
         exact
-        className={classes.Navlink}
-        activeClassName={classes.active}
+        className="Navlink"
+        activeClassName="active"
       >
-        <div className={classes.BookstoreCMS}>Bookstore CMS</div>
+        <div className="BookstoreCMS">Bookstore CMS</div>
       </NavLink>
       <NavLink
         to="/auth/new-book"
         exact
-        className={classes.Navlink}
-        activeClassName={classes.active}
+        className="Navlink"
+        activeClassName="active"
       >
-        <div className={classes.Books}>Add book</div>
+        <div className="Books">Add book</div>
       </NavLink>
 
       <select
         id="category"
-        className={classes.Category}
+        className="Category"
         value="Learning"
         onChange={handleFilter}
       >
@@ -42,11 +42,11 @@ const categoryFilter = ({ bookCategories, categoryHandler }) => {
           ))
         }
       </select>
-      <div><i className={`fa fa-user-circle ${classes.ProfilePic}`} /></div>
+      <div><i className="fa fa-user-circle ProfilePic" /></div>
       <NavLink
         to="/logout"
-        className={classes.Navlink}
-        activeClassName={classes.active}
+        className="Navlink"
+        activeClassName="active"
       >
         Logout
       </NavLink>

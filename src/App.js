@@ -11,9 +11,8 @@ import Signin from './components/Auth/Signin/Signin';
 import Signup from './components/Auth/Signup/Signup';
 import Logout from './components/Auth/Logout/Logout';
 import { auth, createUserProfileDocument } from './firebase/index';
-import classes from './App.module.css';
 import { setCurrentUser } from './redux/actions/user.actions';
-
+import './App.scss';
 
 class App extends Component {
   unSubscribeFromAuth = null;
@@ -43,7 +42,7 @@ class App extends Component {
 
   render() {
     return (
-      <div className={classes.App}>
+      <div className="App">
         <Header />
         <Switch>
           <Route path="/signin" exact component={Signin} />
