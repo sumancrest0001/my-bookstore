@@ -13,3 +13,8 @@ export const removeBookItem = bookItem => ({
   type: actionTypes.REMOVE_CART_ITEM,
   bookItem,
 });
+
+export const decreaseCartItemQuantity = bookItem => ({
+  type: actionTypes.DECREASE_CART_ITEM_QUANTITY,
+  bookItem,
+});
