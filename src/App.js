@@ -42,21 +42,29 @@ class App extends Component {
   }
 
   render() {
+    const { adminStatus } = this.props;
+    console.log(adminStatus);
     return (
       <div className="App">
-        <Header />
+        <Header hideNewBook={adminStatus} />
         <Switch>
           <Route path="/signin" exact component={Signin} />
           <Route path="/register" exact component={Signup} />
           <Route path="/logout" exact component={Logout} />
-          <Route path="/auth" component={AdminMainContainer} />
-          <Route path="/checkout" component={CheckoutPage} />
+          {
+            adminStatus ? <Route path="/auth" component={AdminMainContainer} /> : null
+          }
           <Route path="/" exact component={HomePage} />
+          <Route path="/checkout" component={CheckoutPage} />
         </Switch>
       </div>
     );
   }
 }
+
+const mapStateToProps = state => ({
+  adminStatus: state.user.admin,
+});
 
 const mapDispatchToProps = dispatch => ({
   setCurrentUser: (user, admin) => dispatch(setCurrentUser(user, admin)),
@@ -66,4 +74,4 @@ App.propTypes = {
   setCurrentUser: PropTypes.func.isRequired,
 };
 
-export default connect(null, mapDispatchToProps)(App);
+export default connect(mapStateToProps, mapDispatchToProps)(App);

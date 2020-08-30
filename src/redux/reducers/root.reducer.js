@@ -3,7 +3,6 @@ import { persistReducer } from 'redux-persist';
 import storage from 'redux-persist/lib/storage';
 import bookReducer from './books.reducer';
 import userReducer from './user.reducer';
-import filterReducer from './filter';
 import cartReducer from './cart.reducer';
 
 const persistConfig = {
@@ -13,8 +12,7 @@ const persistConfig = {
 };
 
 const rootReducer = combineReducers({
-  books: bookReducer,
-  filter: filterReducer,
+  book: bookReducer,
   user: userReducer,
   cart: cartReducer,
 });

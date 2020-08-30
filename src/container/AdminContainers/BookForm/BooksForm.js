@@ -1,8 +1,8 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
-import { storage } from '../../../firebase/index';
-import { createBook } from '../../../redux/actions/index';
+import { storage, firestore } from '../../../firebase/index';
+import { addBook } from '../../../redux/actions/book.actions';
 import './BooksForm.scss';
 
 class BookForm extends Component {
@@ -14,14 +14,13 @@ class BookForm extends Component {
         title: '',
         description: '',
         category: '',
-        genre: '',
         author: '',
         publisher: '',
         price: '',
-        image: '',
         status: '',
         url: '',
       },
+      image: '',
       progress: 0,
     };
   }
@@ -35,20 +34,13 @@ class BookForm extends Component {
 
   handleFileChange = event => {
     if (event.target.files[0]) {
-      const { book } = this.state;
-      let updatedBook = book;
-      updatedBook = {
-        ...updatedBook,
-        image: event.target.files[0],
-      };
-      this.setState({ book: updatedBook });
+      this.setState({ image: event.target.files[0] });
     }
   };
 
   handleSubmit = () => {
-    const { addBook } = this.props;
-    const { book } = this.state;
-    const uploadImage = storage.ref(`images/${book.image.name}`).put(book.image);
+    const { image } = this.state;
+    const uploadImage = storage.ref(`images/${image.name}`).put(image);
     uploadImage.on('state_changed',
       snapshot => {
         const progress = Math.round((snapshot.bytesTransferred / snapshot.totalBytes) * 100);
@@ -58,22 +50,24 @@ class BookForm extends Component {
         console.log(error);
       },
       () => {
-        storage.ref('images').child(book.image.name).getDownloadURL().then(bookImageUrl => {
+        storage.ref('images').child(image.name).getDownloadURL().then(bookImageUrl => {
           const { book } = this.state;
           const updatedBook = {
             ...book,
             url: bookImageUrl,
+            createdAt: new Date(),
           };
           this.setState({ book: updatedBook });
+          const collectionRef = firestore.collection('books');
+          collectionRef.add(updatedBook);
         });
       });
-    addBook(book);
   };
 
   render() {
     const { book, progress } = this.state;
     const {
-      isbn, title, description, category, genre, author, publisher, price, status,
+      isbn, title, description, category, author, publisher, price, status,
     } = book;
     const { categories, bookCondition } = this.props;
     return (
@@ -101,6 +95,7 @@ class BookForm extends Component {
           <input
             type="textarea"
             id="description"
+            rows="5"
             className="Input, InputFields, Text"
             placeholder="Add short description"
             value={description}
@@ -124,15 +119,6 @@ class BookForm extends Component {
               ))
             }
           </select>
-          <input
-            type="text"
-            id="genre"
-            className="Input InputFields Text"
-            placeholder="Add genre"
-            value={genre}
-            onChange={this.handleChange}
-            required
-          />
           <input
             type="text"
             id="author"
@@ -198,7 +184,7 @@ class BookForm extends Component {
 }
 
 const mapDispatchToProps = dispatch => ({
-  addBook: data => { dispatch(createBook(data)); },
+  addBook: data => { dispatch(addBook(data)); },
 });
 
 BookForm.propTypes = {

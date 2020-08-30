@@ -7,7 +7,7 @@ import './SingleBook.scss';
 
 const SingleBook = ({ book }) => (
   <div className="section__singleBook singleBook">
-    <img src={bookImage} alt="the book" className="singleBook__image" />
+    <img src={book.url} alt="the book" className="singleBook__image" />
     <div className="singleBook__body">
       <h3 className="singleBook__title">{book.title}</h3>
       <small className="singleBook__author">{book.author}</small>
