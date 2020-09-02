@@ -1,13 +1,12 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import book1 from '../../../images/book1.jpg';
 
 import './Book.scss';
 
 const book = ({ bookItem, clicked }) => (
   <div className="Book">
     <div className="imageContainer">
-      <img src="book1" alt="book name" className="bookImage" />
+      <img src={bookItem.url} alt="book name" className="bookImage" />
     </div>
     <div className="LeftSection">
       <div className="Category">{bookItem.category}</div>

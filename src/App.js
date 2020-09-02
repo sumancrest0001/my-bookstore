@@ -11,14 +11,38 @@ import Signin from './components/Auth/Signin/Signin';
 import Signup from './components/Auth/Signup/Signup';
 import Logout from './components/Auth/Logout/Logout';
 import CheckoutPage from './components/CheckoutPage/CheckoutPage';
-import { auth, createUserProfileDocument } from './firebase/index';
+import { auth, createUserProfileDocument, firestore } from './firebase/index';
 import { setCurrentUser } from './redux/actions/user.actions';
+import { getBooks } from './redux/actions/book.actions';
 import './App.scss';
 
 class App extends Component {
   unSubscribeFromAuth = null;
 
+  unsubscribeFromSnapShot = null;
+
   componentDidMount() {
+    this.checkCurrentUser();
+    this.fetchData();
+  }
+
+  componentWillUnmount() {
+    this.unSubscribeFromAuth();
+    this.unsubscribeFromSnapShot = null;
+  }
+
+  fetchData = async () => {
+    const { storeBooks } = this.props;
+    const booksRef = firestore.collection('books').orderBy('createdAt', 'desc');
+    const availableBooks = [];
+    this.unsubscribeFromSnapShot = booksRef.onSnapshot(snapShot => {
+      snapShot.forEach(doc => availableBooks.push({ ...doc.data(), id: doc.id }));
+      storeBooks(availableBooks);
+    });
+  }
+
+
+  checkCurrentUser = () => {
     const { setCurrentUser } = this.props;
     this.unSubscribeFromAuth = auth.onAuthStateChanged(async userAuth => {
       if (userAuth) {
@@ -37,13 +61,8 @@ class App extends Component {
     });
   }
 
-  componentWillUnmount() {
-    this.unSubscribeFromAuth();
-  }
-
   render() {
-    const { adminStatus } = this.props;
-    console.log(adminStatus);
+    const { adminStatus, books } = this.props;
     return (
       <div className="App">
         <Header hideNewBook={adminStatus} />
@@ -54,7 +73,7 @@ class App extends Component {
           {
             adminStatus ? <Route path="/auth" component={AdminMainContainer} /> : null
           }
-          <Route path="/" exact component={HomePage} />
+          <Route path="/" exact render={() => <HomePage availableBooks={books} />} />
           <Route path="/checkout" component={CheckoutPage} />
         </Switch>
       </div>
@@ -64,10 +83,12 @@ class App extends Component {
 
 const mapStateToProps = state => ({
   adminStatus: state.user.admin,
+  books: state.book.books,
 });
 
 const mapDispatchToProps = dispatch => ({
   setCurrentUser: (user, admin) => dispatch(setCurrentUser(user, admin)),
+  storeBooks: books => (dispatch(getBooks(books))),
 });
 
 App.propTypes = {

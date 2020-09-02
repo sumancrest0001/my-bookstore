@@ -39,7 +39,7 @@ const adminMainContainer = props => {
 
 
 const mapStateToProps = state => ({
-  books: state.books,
+  books: state.book.books,
   adminStatus: state.user.admin,
 });
 

@@ -8,7 +8,7 @@ import './BooksForm.scss';
 class BookForm extends Component {
   constructor(props) {
     super(props);
-    this.state = {
+    this.initialState = {
       book: {
         isbn: '',
         title: '',
@@ -23,6 +23,7 @@ class BookForm extends Component {
       image: '',
       progress: 0,
     };
+    this.state = props.book ? props.book : this.initialState;
   }
 
   handleChange = event => {
