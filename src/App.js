@@ -14,6 +14,7 @@ import CheckoutPage from './components/CheckoutPage/CheckoutPage';
 import { auth, createUserProfileDocument, firestore } from './firebase/index';
 import { setCurrentUser } from './redux/actions/user.actions';
 import { getBooks } from './redux/actions/book.actions';
+import { updateHomePageStore } from './utilities/utility';
 import './App.scss';
 
 class App extends Component {
@@ -33,14 +34,29 @@ class App extends Component {
 
   fetchData = async () => {
     const { storeBooks } = this.props;
-    const booksRef = firestore.collection('books').orderBy('createdAt', 'desc');
     const availableBooks = [];
+    const booksRef = firestore.collection('books').orderBy('createdAt', 'desc');
     this.unsubscribeFromSnapShot = booksRef.onSnapshot(snapShot => {
       snapShot.forEach(doc => availableBooks.push({ ...doc.data(), id: doc.id }));
-      storeBooks(availableBooks);
+      const arrangedBooks = this.categorizeBooks(availableBooks);
+      storeBooks(availableBooks, arrangedBooks);
     });
+
   }
 
+  categorizeBooks = availableBooks => {
+    const newBooks = availableBooks.filter(book => book.status !== 'used');
+    const kidsBooks = availableBooks.filter(item => item.category === 'Kids');
+    const bestPicks = updateHomePageStore(availableBooks);
+    const usedBooks = availableBooks.filter(item => item.status === 'used');
+    const homepageBooks = {
+      newBooks,
+      kidsBooks,
+      bestPicks,
+      usedBooks,
+    };
+    return homepageBooks;
+  };
 
   checkCurrentUser = () => {
     const { setCurrentUser } = this.props;
@@ -88,7 +104,7 @@ const mapStateToProps = state => ({
 
 const mapDispatchToProps = dispatch => ({
   setCurrentUser: (user, admin) => dispatch(setCurrentUser(user, admin)),
-  storeBooks: books => (dispatch(getBooks(books))),
+  storeBooks: (books, arrangedBooks) => (dispatch(getBooks(books, arrangedBooks))),
 });
 
 App.propTypes = {

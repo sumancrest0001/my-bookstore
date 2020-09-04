@@ -1,8 +1,9 @@
 import * as actionTypes from './actionTypes';
 
-export const getBooks = books => ({
+export const getBooks = (books, arrangedBooks) => ({
   type: actionTypes.GET_BOOKS,
   books,
+  arrangedBooks,
 });
 
 export const removeBook = book => ({

@@ -1,20 +1,35 @@
 import React from 'react';
-import SingleBook from '../../components/SingleBook/SingleBook';
+import { connect } from 'react-redux';
+import BookSection from '../../components/BookSection/BookSection';
 import './HomePage.scss';
 
-const homePage = ({ availableBooks }) => {
+const homePage = ({ homepageBooks }) => {
+  let render;
+  if (homepageBooks) {
+    const {
+      newBooks, bestPicks, kidsBooks, usedBooks,
+    } = homepageBooks;
+    render = (
+      <>
+        <BookSection books={newBooks.slice(0, 6)} title="New Arrivals" />
+        <BookSection books={bestPicks} title="Our Picks" />
+        <BookSection books={kidsBooks.slice(0, 6)} title="Books for Kids" />
+        <BookSection books={usedBooks.slice(0, 6)} title="Used Books" />
+      </>
+    );
+  } else {
+    render = <div>loading</div>;
+  }
   return (
-    <section className="section">
-      <h3 className="section__title"> New arrivals</h3>
-      <div className="section__books">
-        {
-          availableBooks.map(item => (<SingleBook key={item.id} book={item} />))
-        }
-      </div>
-    </section>
+    <div className="homepage">
+      {render}
+    </div>
 
   );
 };
 
+const mapStateToProps = state => ({
+  homepageBooks: state.book.homepageBooks,
+});
 
-export default homePage;
+export default connect(mapStateToProps)(homePage);
