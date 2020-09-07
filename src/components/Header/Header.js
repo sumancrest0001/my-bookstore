@@ -20,7 +20,7 @@ const header = ({ cartDropdownHidden, hideNewBook }) => {
         hideNewBook
           ? (
             <NavLink
-              to="/new-book"
+              to="/auth/new-book"
               exact
               className="navlink"
             >

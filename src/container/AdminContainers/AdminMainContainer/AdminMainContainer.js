@@ -7,22 +7,14 @@ import BookList from '../BookList/BookList';
 import BookForm from '../BookForm/BooksForm';
 import CategoryFilter from '../../../components/CategoryFilter/CategoryFilter';
 import { category, bookStatus } from '../../../utilities/utility';
-import { removeBook, setBookFilter } from '../../../redux/actions/book.actions';
+import { removeBook, filterCategory } from '../../../redux/actions/book.actions';
 
 const adminMainContainer = props => {
   const {
-    books, deleteBook, filter, categoryFilter,
+    books, deleteBook, categoryFilter,
   } = props;
+  console.log(books);
 
-  const filteredBooks = () => {
-    let updatedBooks;
-    if (filter === 'All') {
-      updatedBooks = books;
-    } else {
-      updatedBooks = books.filter(book => book.category === filter);
-    }
-    return updatedBooks;
-  };
   return (
     <main>
       <CategoryFilter
@@ -39,13 +31,13 @@ const adminMainContainer = props => {
 
 
 const mapStateToProps = state => ({
-  books: state.book.books,
+  books: state.book.filteredBooks,
   adminStatus: state.user.admin,
 });
 
 const mapDispatchToProps = dispatch => ({
   deleteBook: data => { dispatch(removeBook(data)); },
-  categoryFilter: category => { dispatch(setBookFilter(category)); },
+  categoryFilter: category => { dispatch(filterCategory(category)); },
 });
 
 
@@ -53,7 +45,6 @@ adminMainContainer.propTypes = {
   books: PropTypes.instanceOf(Array).isRequired,
   deleteBook: PropTypes.func.isRequired,
   categoryFilter: PropTypes.func.isRequired,
-  filter: PropTypes.string.isRequired,
 };
 
 export default connect(mapStateToProps, mapDispatchToProps)(adminMainContainer);

@@ -10,7 +10,6 @@ const categoryFilter = ({ bookCategories, categoryHandler }) => {
       <select
         id="category"
         className="Category"
-        value="Learning"
         onChange={handleFilter}
       >
         {

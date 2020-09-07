@@ -48,7 +48,7 @@ class BookForm extends Component {
         this.setState({ progress });
       },
       error => {
-        console.log(error);
+        alert(error);
       },
       () => {
         storage.ref('images').child(image.name).getDownloadURL().then(bookImageUrl => {
@@ -93,18 +93,18 @@ class BookForm extends Component {
             onChange={this.handleChange}
             required
           />
-          <input
-            type="textarea"
+          <textarea
             id="description"
-            rows="5"
-            className="Input, InputFields, Text"
+            rows={5}
+            cols={60}
+            className="Input Text"
             placeholder="Add short description"
             value={description}
             onChange={this.handleChange}
             required
           />
           <select
-            className="Select, InputFields, classes.Text"
+            className="Select InputFields Text"
             id="category"
             value={category}
             onChange={this.handleChange}
@@ -133,7 +133,7 @@ class BookForm extends Component {
             type="text"
             id="publisher"
             className="Input InputFields Text"
-            placeholder="Publishername"
+            placeholder="Publisher name"
             value={publisher}
             onChange={this.handleChange}
             required

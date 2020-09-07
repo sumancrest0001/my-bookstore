@@ -16,7 +16,12 @@ export const addBook = book => ({
   book,
 });
 
-export const setBookFilter = filter => ({
-  type: actionTypes.SET_BOOK_FILTER,
+export const filterCategory = filter => ({
+  type: actionTypes.FILTER_CATEGORY,
   filter,
+});
+
+export const bookFilter = bookID => ({
+  type: actionTypes.BOOK_FILTER,
+  bookID,
 });
