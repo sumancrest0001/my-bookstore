@@ -2,14 +2,13 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import Book from '../../../components/AdminComponents/Book/Book';
 
-const bookList = ({
-  deleteBook, availableBooks,
-}) => {
+const bookList = ({ deleteBook, availableBooks }) => {
+  console.log(availableBooks);
   let renderBooks = <p>Books of this category are not found</p>;
-  if (availableBooks.length >= 0) {
+  if (availableBooks.length > 0) {
     renderBooks = availableBooks.map(book => (
       <Book
-        key={book.isbn}
+        key={book.id}
         bookItem={book}
         clicked={deleteBook}
       />

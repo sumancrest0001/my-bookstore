@@ -1,5 +1,7 @@
 import firebase from 'firebase/app';
 import 'firebase/storage';
+import 'firebase/firestore';
+import 'firebase/auth';
 
 const firebaseConfig = {
   apiKey: 'AIzaSyB5F3x05Au8Q1Z-SngX-5yifqTTKqdGfbA',
@@ -15,7 +17,38 @@ const firebaseConfig = {
 firebase.initializeApp(firebaseConfig);
 
 const storage = firebase.storage();
+const auth = firebase.auth();
+const firestore = firebase.firestore();
+
+const createUserProfileDocument = async (userAuth, additionalData) => {
+  if (!userAuth) return;
+  const userRef = firestore.doc(`users/${userAuth.uid}`);
+  const snapShot = await userRef.get();
+  if (!snapShot.exists) {
+    const { displayName, email } = userAuth;
+    const createdAt = new Date();
+
+    try {
+      await userRef.set({
+        displayName,
+        email,
+        createdAt,
+        ...additionalData,
+      });
+    } catch (error) {
+      console.log('error creating user', error.message);
+    }
+  }
+  // eslint-disable-next-line consistent-return
+  return userRef;
+};
+
+const provider = new firebase.auth.GoogleAuthProvider();
+provider.setCustomParameters({ prompt: 'select_account' });
+
+const signInWithGoogle = () => auth.signInWithPopup(provider);
+
 
 export {
-  storage, firebase as default,
+  storage, signInWithGoogle, createUserProfileDocument, auth, firestore, firebase as default,
 };

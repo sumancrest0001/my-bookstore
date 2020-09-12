@@ -1,0 +1,17 @@
+.cart-button {
+  padding: 8px;
+  width: 75%;
+  cursor: pointer;
+  border-radius: 5px;
+  border: 1px solid #fff;
+  text-align: center;
+  background: #cf450e;
+  text-transform: capitalize;
+  color: #fff;
+
+  &:hover {
+    background-color: #919090;
+    color: #cf450e;
+    border: 1px solid #cf450e;
+  }
+}

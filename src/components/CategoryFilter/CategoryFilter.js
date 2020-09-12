@@ -1,34 +1,15 @@
 import React from 'react';
-import { NavLink } from 'react-router-dom';
 import PropTypes from 'prop-types';
-import classes from './CategoryFilter.module.css';
+import './CategoryFilter.scss';
 import '../../../node_modules/font-awesome/css/font-awesome.min.css';
 
 const categoryFilter = ({ bookCategories, categoryHandler }) => {
   const handleFilter = event => { categoryHandler(event.target.value); };
   return (
-    <div className={classes.Filter}>
-      <NavLink
-        to="/auth"
-        exact
-        className={classes.Navlink}
-        activeClassName={classes.active}
-      >
-        <div className={classes.BookstoreCMS}>Bookstore CMS</div>
-      </NavLink>
-      <NavLink
-        to="/auth/new-book"
-        exact
-        className={classes.Navlink}
-        activeClassName={classes.active}
-      >
-        <div className={classes.Books}>Add book</div>
-      </NavLink>
-
+    <div className="Filter">
       <select
         id="category"
-        className={classes.Category}
-        value="Learning"
+        className="Category"
         onChange={handleFilter}
       >
         {
@@ -42,7 +23,6 @@ const categoryFilter = ({ bookCategories, categoryHandler }) => {
           ))
         }
       </select>
-      <div><i className={`fa fa-user-circle ${classes.ProfilePic}`} /></div>
     </div>
   );
 };

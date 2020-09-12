@@ -1,0 +1,36 @@
+.section {
+  padding: 0 1rem;
+  
+  &__title {
+    font-size: 24px;
+    font-weight: 500;
+    color: #000;
+    text-align: start;
+    margin: 1rem 0;
+
+  }
+
+  &__header {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+  }
+
+  &__link {
+    font-size: 18px;
+    color: #4386bf;
+    margin-left: auto;
+
+    &:hover {
+      color: #cf450e;
+      text-decoration: underline;
+    }
+  }
+  &__books {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(150px, 15%));
+    grid-gap: 1rem;
+    margin: auto;
+  }
+}
