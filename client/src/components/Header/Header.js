@@ -19,13 +19,22 @@ const header = ({ cartDropdownHidden, hideNewBook }) => {
       {
         hideNewBook
           ? (
-            <NavLink
-              to="/auth/new-book"
-              exact
-              className="navlink"
-            >
-              <div className="new-book">Add book</div>
-            </NavLink>
+            <>
+              <NavLink
+                to="/auth"
+                exact
+                className="navlink"
+              >
+                <div className="new-book">Dashboard</div>
+              </NavLink>
+              <NavLink
+                to="/auth/new-book"
+                exact
+                className="navlink"
+              >
+                <div className="new-book">Add book</div>
+              </NavLink>
+            </>
           )
           : null
       }

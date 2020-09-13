@@ -43,12 +43,9 @@ const createUserProfileDocument = async (userAuth, additionalData) => {
   return userRef;
 };
 
-const provider = new firebase.auth.GoogleAuthProvider();
-provider.setCustomParameters({ prompt: 'select_account' });
 
-const signInWithGoogle = () => auth.signInWithPopup(provider);
 
 
 export {
-  storage, signInWithGoogle, createUserProfileDocument, auth, firestore, firebase as default,
+  storage, createUserProfileDocument, auth, firestore, firebase as default,
 };

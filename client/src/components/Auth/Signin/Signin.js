@@ -1,8 +1,9 @@
 import React, { Component } from 'react';
+import firebase from 'firebase/app';
 import { Link } from 'react-router-dom';
 import FormInput from '../../FormInput/FormInput';
 import CustomButton from '../../CustomButton/CustomButton';
-import { signInWithGoogle, auth } from '../../../firebase/index';
+import { provider, auth } from '../../../firebase/index';
 import classes from './Signin.module.scss';
 
 class Signin extends Component {
@@ -20,10 +21,24 @@ class Signin extends Component {
     try {
       await auth.signInWithEmailAndPassword(email, password);
       this.setState({ email: '', password: '' });
+      this.props.history.goBack();
     } catch (error) {
       alert(error);
     }
   }
+
+  signInWithGoogle = () => {
+    const provider = new firebase.auth.GoogleAuthProvider();
+    provider.setCustomParameters({ prompt: 'select_account' });
+    auth.signInWithPopup(provider)
+      .then(result => {
+        this.props.history.goBack();
+      })
+      .catch(error => {
+        console.log(error.message);
+      });
+  }
+
 
   handleChange = event => {
     const { value, name } = event.target;
@@ -45,7 +60,7 @@ class Signin extends Component {
           </p>
           <div className={classes.buttons}>
             <CustomButton type="submit">Sign in</CustomButton>
-            <CustomButton onClick={signInWithGoogle} isGoogleSignIn>Sign in with google</CustomButton>
+            <CustomButton onClick={this.signInWithGoogle} isGoogleSignIn>Sign in with google</CustomButton>
           </div>
         </form>
       </div>

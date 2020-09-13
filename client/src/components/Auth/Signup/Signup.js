@@ -28,6 +28,7 @@ class Signup extends Component {
     try {
       const { user } = await auth.createUserWithEmailAndPassword(email, password);
       await createUserProfileDocument(user, { displayName });
+      this.props.history.push('/');
       this.setState({
         displayName: '',
         email: '',
