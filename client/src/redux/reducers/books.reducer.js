@@ -4,7 +4,7 @@ const filterBooks = (books, filter) => {
   let filteredBooks;
   if (filter === 'used' || filter === 'brand new') {
     filteredBooks = books.filter(book => book.status === filter);
-  } else if (filter === 'all') {
+  } else if (filter === 'All') {
     filteredBooks = books;
   } else {
     filteredBooks = books.filter(book => book.category === filter);
@@ -16,7 +16,7 @@ const filterBooks = (books, filter) => {
 const initialState = {
   books: [],
   homepageBooks: null,
-  currentBook: '',
+  currentBook: [],
   categoryFilter: 'all',
   filteredBooks: [],
 };
@@ -39,7 +39,7 @@ const bookReducer = (state = initialState, action) => {
     case actionTypes.BOOK_FILTER:
       return {
         ...state,
-        currentBook: state.books[action.bookID],
+        currentBook: state.books.filter(item => item.id === action.bookID),
       };
     default:
       return state;

@@ -5,6 +5,7 @@ import PropTypes from 'prop-types';
 
 import BookList from '../BookList/BookList';
 import BookForm from '../BookForm/BooksForm';
+import BookDetails from '../../../components/BookDetails/BookDetails';
 import CategoryFilter from '../../../components/CategoryFilter/CategoryFilter';
 import { category, bookStatus } from '../../../utilities/utility';
 import { removeBook, filterCategory } from '../../../redux/actions/book.actions';
@@ -24,6 +25,7 @@ const adminMainContainer = props => {
       <Switch>
         <Route path="/auth/new-book" exact render={() => <BookForm bookCondition={bookStatus} categories={category} />} />
         <Route path="/auth" exact render={() => <BookList deleteBook={deleteBook} availableBooks={books} />} />
+        <Route path="/auth/books/:id" render={() => <BookDetails admin />} />
       </Switch>
     </main>
   );

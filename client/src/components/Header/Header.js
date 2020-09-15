@@ -1,6 +1,6 @@
 import React from 'react';
 import { connect } from 'react-redux';
-import { NavLink } from 'react-router-dom';
+import { NavLink, Link } from 'react-router-dom';
 import { createStructuredSelector } from 'reselect';
 import UserIcon from '../Icons/UserIcon/UserIcon';
 import FavoriteIcon from '../Icons/FavoriteIcon/FavoriteIcon';
@@ -15,7 +15,9 @@ const header = ({ cartDropdownHidden, hideNewBook }) => {
   return (
     <nav className="navbar">
       <Logo className="navbar__logo" />
-      <div className="navbar__site-name">BOOK MANDALA</div>
+      <Link to="/" exact className="navbar__dashboard">
+        <div className="navbar__site-name">BOOK MANDALA</div>
+      </Link>
       {
         hideNewBook
           ? (

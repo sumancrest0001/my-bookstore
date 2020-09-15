@@ -25,7 +25,7 @@ const cartDropdown = ({ cartItems, history, dispatch }) => {
         }
 
       </div>
-      <CustomButton onClick={onClickHandler}>Go to Checkout</CustomButton>
+      <CustomButton onClick={onClickHandler}>Checkout</CustomButton>
     </div>
   );
 }
