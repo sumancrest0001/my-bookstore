@@ -23,7 +23,6 @@ class BookForm extends Component {
       image: '',
       progress: 0,
     };
-    this.state = props.book ? props.book : this.initialState;
   }
 
   handleChange = event => {

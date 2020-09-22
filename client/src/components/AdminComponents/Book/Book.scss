@@ -44,33 +44,3 @@
   color: #4386bf;
   margin-bottom: 5px;
 }
-
-.Btns {
-  display: flex;
-  flex-direction: row;
-  align-items: center;
-  font-size: 13px;
-}
-.btn {
-  text-decoration: none;
-  font-family: RobotoSlab;
-  font-size: 14px;
-  font-weight: 300;
-  color: #000;
-  border: 1px solid #000;
-  border-radius: 2px;
-  padding: 5px 10px;
-  margin-right: 10px;
-}
-
-.delete:hover {
-  background-color: #ed2c0e;
-}
-
-.edit:hover {
-  background-color: #0e4ded;
-}
-
-.show:hover {
-  background-color: #0eedda;
-}

@@ -1,15 +1,14 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import CustomButton from '../CustomButton/CustomButton';
+import CrudButtons from '../CrudButtons/CrudButtons';
 import './BookDetails.scss';
-import book1 from '../../images/book1.jpg';
-import { bookFilter } from '../../redux/actions/book.actions';
+import { bookFilter, boo } from '../../redux/actions/book.actions';
 
 class BookDetails extends Component {
   componentDidMount() {
     const { match, filterSelectedBook, selectedBook } = this.props;
     filterSelectedBook(match.params.id);
-    console.log(selectedBook);
     /*     const collectionRef = firestore.collection("books").doc(match.params.id);
         collectionRef.get()
           .then(doc => console.log(doc.data()))
@@ -17,7 +16,6 @@ class BookDetails extends Component {
   }
   shouldComponentUpdate(nextProps, nextState) {
     if (!this.props.selectedBook || (this.props.selectedBook.id !== this.props.match.params.id)) {
-      console.log('not rerendered');
       return true;
     }
     else {
@@ -41,6 +39,22 @@ class BookDetails extends Component {
       return cartDetails;
     };
 
+    const updateDeleteLinks = (bookToDisplay) => {
+      const { history } = this.props;
+      let links = null;
+      if (admin) {
+        links = (
+          <>
+            <div>Price: {bookToDisplay.price}</div>
+            <div>
+              <CrudButtons selectedBook={bookToDisplay} history={history} />
+            </div>
+          </>
+        );
+      }
+      return links;
+    }
+
     let elementsToRender = <div>Loading ...</div>;
     if (selectedBook.length > 0) {
       const bookToDisplay = selectedBook[0];
@@ -51,6 +65,7 @@ class BookDetails extends Component {
           <p className="head__author">By {bookToDisplay.author}</p>
           <p className="head__publication">Published by: {bookToDisplay.publication}</p>
           <p className="head__status">Book status: {bookToDisplay.status}</p>
+          {updateDeleteLinks(bookToDisplay)}
         </div>
         {addCartDetails(bookToDisplay)}
         <p className="book-details__description">{bookToDisplay.description}</p>
@@ -66,7 +81,7 @@ class BookDetails extends Component {
 }
 
 const mapDispatchToProps = dispatch => ({
-  filterSelectedBook: bookID => { dispatch(bookFilter(bookID)); },
+  filterSelectedBook: bookID => { dispatch(bookFilter(bookID)) },
 });
 
 const mapStateToProps = state => ({

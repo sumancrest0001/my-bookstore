@@ -1,14 +1,19 @@
 import React from 'react';
 import { withRouter } from 'react-router-dom';
+import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
-
+import CrudButtons from '../../CrudButtons/CrudButtons';
+import { bookFilter } from '../../../redux/actions/book.actions';
 import './Book.scss';
 
-const book = ({ bookItem, clicked, history }) => {
+
+const book = ({ bookItem, history, addCurrentBook }) => {
 
   const selectedBookHandler = id => {
-    history.push(`/auth/books/${id}`);
+    addCurrentBook(id);
+    history.push(`/auth/book/${id}`);
   }
+
   return (
     <div className="Book">
       <div className="imageContainer">
@@ -16,19 +21,20 @@ const book = ({ bookItem, clicked, history }) => {
       </div>
       <div className="LeftSection">
         <div className="Category">{bookItem.category}</div>
-        <h3 className="Title" onClick={() => selectedBookHandler(bookItem.id)}>{bookItem.title}</h3>
+        <h3 className="Title" role="presentation" onClick={() => selectedBookHandler(bookItem.id)}>{bookItem.title}</h3>
         <div className="Writer">{bookItem.author}</div>
-        <div className="Btns">
-          <button type="button" id={bookItem.id} onClick={bookItem => clicked(bookItem)} className="btn delete">Remove</button>
-          <button type="button" className="btn show">Show</button>
-          <button type="button" className="btn edit">Edit</button>
-        </div>
+        <CrudButtons selectedBook={bookItem} history={history} />
       </div>
     </div>);
 };
 
+const mapDispatchToProps = dispatch => ({
+  addCurrentBook: bookID => { dispatch(bookFilter(bookID)) },
+})
+
 book.propTypes = {
   bookItem: PropTypes.instanceOf(Object).isRequired,
-  clicked: PropTypes.func.isRequired,
 };
-export default withRouter(book);
+
+const withRouterBook = withRouter(book);
+export default connect(null, mapDispatchToProps)(withRouterBook);

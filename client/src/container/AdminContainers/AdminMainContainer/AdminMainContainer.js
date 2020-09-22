@@ -12,7 +12,7 @@ import { removeBook, filterCategory } from '../../../redux/actions/book.actions'
 
 const adminMainContainer = props => {
   const {
-    books, deleteBook, categoryFilter,
+    books, categoryFilter
   } = props;
   console.log(books);
 
@@ -23,9 +23,10 @@ const adminMainContainer = props => {
         categoryHandler={filteredCategory => categoryFilter(filteredCategory)}
       />
       <Switch>
+        <Route path="/auth/edit/:id" component={BookForm} />
         <Route path="/auth/new-book" exact render={() => <BookForm bookCondition={bookStatus} categories={category} />} />
-        <Route path="/auth" exact render={() => <BookList deleteBook={deleteBook} availableBooks={books} />} />
-        <Route path="/auth/books/:id" render={() => <BookDetails admin />} />
+        <Route path="/auth" exact render={() => <BookList availableBooks={books} />} />
+        <Route path="/auth/book/:id" render={props => <BookDetails admin {...props} />} />
       </Switch>
     </main>
   );
@@ -38,14 +39,12 @@ const mapStateToProps = state => ({
 });
 
 const mapDispatchToProps = dispatch => ({
-  deleteBook: data => { dispatch(removeBook(data)); },
   categoryFilter: category => { dispatch(filterCategory(category)); },
 });
 
 
 adminMainContainer.propTypes = {
   books: PropTypes.instanceOf(Array).isRequired,
-  deleteBook: PropTypes.func.isRequired,
   categoryFilter: PropTypes.func.isRequired,
 };
 
