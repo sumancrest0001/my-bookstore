@@ -1,14 +1,17 @@
 import React from 'react';
+import { withRouter } from 'react-router-dom';
+import { connect } from 'react-redux';
 import CartButton from '../CartButton/CartButton';
 import LikeButton from '../LikeButton/LikeButton';
-
+import { addBookItem } from '../../redux/actions/cart.actions';
+import { bookFilter } from '../../redux/actions/book.actions';
 import './SingleBook.scss';
 
-const SingleBook = ({ book }) => {
+const SingleBook = ({ book, addCurrentBook, addBookItem, history }) => {
 
   const selectedBookHandler = id => {
     addCurrentBook(id);
-    history.push(`/auth/book/${id}`);
+    history.push(`/shop/book/${id}`);
   };
 
   return (
@@ -22,7 +25,7 @@ const SingleBook = ({ book }) => {
         {book.price}
         </p>
         <div className="singleBook__buttons">
-          <CartButton item={book} />
+          <CartButton onClick={() => addBookItem(book)} />
           <LikeButton />
         </div>
       </div>
@@ -30,4 +33,11 @@ const SingleBook = ({ book }) => {
   );
 }
 
-export default SingleBook;
+const mapDispatchToProps = dispatch => ({
+  addCurrentBook: bookID => { dispatch(bookFilter(bookID)) },
+  addBookItem: bookItem => dispatch(addBookItem(bookItem)),
+});
+
+const withRouterSingleBook = withRouter(SingleBook);
+export default connect(null, mapDispatchToProps)(withRouterSingleBook);
+

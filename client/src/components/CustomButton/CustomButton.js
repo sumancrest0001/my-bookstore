@@ -1,12 +1,12 @@
 import React from 'react';
-import classes from './CustomButton.module.scss';
+import './CustomButton.scss';
 
 
 const CustomButton = ({ children, isGoogleSignIn, ...otherProps }) => {
   return (
-    <button type="button" className={[classes.CustomButton, isGoogleSignIn ? classes.GoogleSignIn : ''].join(' ')} {...otherProps} >
+    <button type="button" className={`CustomButton ${isGoogleSignIn ? "GoogleSignIn" : ''}`} {...otherProps} >
       {children}
-    </button>
+    </button >
   );
 };
 

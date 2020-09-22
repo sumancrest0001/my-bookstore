@@ -3,8 +3,8 @@ import { connect } from 'react-redux';
 import CustomButton from '../CustomButton/CustomButton';
 import CrudButtons from '../CrudButtons/CrudButtons';
 import './BookDetails.scss';
-import { bookFilter, boo } from '../../redux/actions/book.actions';
-
+import { bookFilter } from '../../redux/actions/book.actions';
+import { addBookItem } from '../../redux/actions/cart.actions';
 class BookDetails extends Component {
   componentDidMount() {
     const { match, filterSelectedBook, selectedBook } = this.props;
@@ -24,7 +24,7 @@ class BookDetails extends Component {
   }
 
   render() {
-    const { selectedBook, admin } = this.props;
+    const { selectedBook, admin, addBookItem } = this.props;
 
     const addCartDetails = (bookToDisplay) => {
       let cartDetails = null;
@@ -32,7 +32,7 @@ class BookDetails extends Component {
         cartDetails = (<div className="book-details__cart">
           <h3 className="book-details__price-title">Book Price</h3>
           <p className="book-details__price">Rs {bookToDisplay.price}</p>
-          <CustomButton>Add to Cart</CustomButton>
+          <CustomButton onClick={() => addBookItem(bookToDisplay)}>Add to Cart</CustomButton>
           <CustomButton>Add to Favorite</CustomButton>
         </div>);
       }
@@ -82,6 +82,7 @@ class BookDetails extends Component {
 
 const mapDispatchToProps = dispatch => ({
   filterSelectedBook: bookID => { dispatch(bookFilter(bookID)) },
+  addBookItem: bookItem => dispatch(addBookItem(bookItem)),
 });
 
 const mapStateToProps = state => ({
