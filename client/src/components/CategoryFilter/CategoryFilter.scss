@@ -1,0 +1,44 @@
+.Filter {
+  background-color: #ffffff;
+  display: inline-block;
+}
+
+.BookstoreCMS {
+  width: 240px;
+  height: 37px;
+  font-family: Montserrat;
+  font-size: 30px;
+  font-weight: bold;
+  font-stretch: normal;
+  font-style: normal;
+  line-height: normal;
+  letter-spacing: normal;
+  color: #0290ff;
+}
+
+
+.Category {
+  opacity: 0.5;
+  font-family: Montserrat;
+  font-size: 13px;
+  font-weight: normal;
+  font-stretch: normal;
+  font-style: normal;
+  line-height: normal;
+  letter-spacing: 1.9px;
+  color: #121212;
+  margin: auto;
+}
+
+.ProfilePic {
+  font-size: 40px !important;
+  color: #0290ff;
+  position: absolute;
+  top: 27px;
+  right: 100px;
+}
+
+
+.active {
+  color: #0290ff;
+}

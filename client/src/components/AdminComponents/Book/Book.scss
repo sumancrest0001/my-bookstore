@@ -1,0 +1,46 @@
+.Book {
+  width: 88%;
+  background-color: #fff;
+  display: flex;
+  flex-direction: row;
+  color: #000;
+  margin: 20px auto;
+  border: 2px solid #e8e8e8;
+  border-radius: 4px;
+  justify-content: start;
+  padding: 20px;;
+}
+
+.bookImage {
+  width: 100px;
+  height: 150px;
+}
+
+.LeftSection {
+  text-align: left;
+  margin-left: 10px;
+}
+
+.Category {
+  opacity: 0.5;
+  font-family: Montserrat;
+  font-size: 14px;
+  font-weight: bold;
+  color: #121212;
+}
+
+.Title {
+  font-family: RobotoSlab;
+  font-size: 22px;
+  font-weight: bold;
+  letter-spacing: -0.2px;
+  color: #121212;
+  margin: 10px 0 8px 0;
+}
+.Writer {
+  font-family: RobotoSlab;
+  font-size: 14px;
+  font-weight: 300;
+  color: #4386bf;
+  margin-bottom: 5px;
+}

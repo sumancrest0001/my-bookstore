@@ -1,0 +1,25 @@
+.icon {
+  width: 45px;
+  height: 45px;
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+
+  &__item {
+    width: 30px;
+    height: 30px;
+  }
+
+  &__itemcount {
+    position: absolute;
+    font-size: 10px;
+    font-weight: bold;
+    bottom: 12px;
+  }
+
+  &:not(:last-child) {
+    margin-right: 1rem;
+  }
+}
