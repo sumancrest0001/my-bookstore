@@ -1,0 +1,30 @@
+.filtered-books-list {
+  padding: 0 1rem;
+  
+  &__header {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+  }
+
+  &__title {
+    font-size: 24px;
+    font-weight: 500;
+    color: #000;
+    text-align: start;
+    margin: 1rem 0;
+  }
+
+  &__filter {
+    display: inline-block;
+  }
+
+  &__list {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(150px, 15%));
+    grid-gap: 1rem;
+    margin: auto;
+  }
+  
+}

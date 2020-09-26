@@ -12,6 +12,7 @@ import Signup from './components/Auth/Signup/Signup';
 import Logout from './components/Auth/Logout/Logout';
 import CheckoutPage from './components/CheckoutPage/CheckoutPage';
 import BookDetails from './components/BookDetails/BookDetails';
+import FilteredBookList from './components/FilteredBookList/FilteredBookList';
 import { auth, createUserProfileDocument, firestore } from './firebase/index';
 import { setCurrentUser } from './redux/actions/user.actions';
 import { getBooks } from './redux/actions/book.actions';
@@ -92,6 +93,7 @@ class App extends Component {
           }
           <Route path="/" exact render={() => <HomePage availableBooks={books} />} />
           <Route path="/checkout" component={CheckoutPage} />
+          <Route path="/shop/book/category/:category" component={FilteredBookList} />
           <Route path="/shop/book/:id" render={props => <BookDetails {...props} />} />
         </Switch>
       </div>

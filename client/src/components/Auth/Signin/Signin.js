@@ -35,7 +35,7 @@ class Signin extends Component {
         this.props.history.goBack();
       })
       .catch(error => {
-        console.log(error.message);
+        alert(error.message);
       });
   }
 

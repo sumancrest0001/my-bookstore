@@ -12,7 +12,7 @@ const userIcon = ({ currentUser }) => {
   ) : (<NavLink to="/signin" exact><User className="icon__item" /></NavLink>);
 
   return (
-    <div>
+    <div className="icon">
       {componentToRender}
     </div>
   );

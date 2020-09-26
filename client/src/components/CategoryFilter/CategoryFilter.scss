@@ -1,12 +1,6 @@
 .Filter {
-  display: flex;
-  flex-direction: row;
-  height: 95px;
   background-color: #ffffff;
-  align-items: center;
-  position: relative;
-  border-bottom: 2px solid #e8e8e8;
-  padding-left: calc((100% - 92%)/2);
+  display: inline-block;
 }
 
 .BookstoreCMS {
@@ -33,7 +27,7 @@
   line-height: normal;
   letter-spacing: 1.9px;
   color: #121212;
-  margin: auto 15px 38px 15px;
+  margin: auto;
 }
 
 .ProfilePic {
