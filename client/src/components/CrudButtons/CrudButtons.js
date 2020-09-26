@@ -3,7 +3,7 @@ import './CrudButtons.scss';
 
 const crudButtons = ({ selectedBook, history }) => {
   const removeBook = (id) => {
-    console.log(id);
+    // console.log(id);
   }
 
   const editSelectedBookHandler = id => {
