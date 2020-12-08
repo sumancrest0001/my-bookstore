@@ -8,7 +8,7 @@ import './BooksForm.scss';
 class BookForm extends Component {
   constructor(props) {
     super(props);
-    this.initialState = {
+    this.state = {
       book: {
         isbn: '',
         title: '',
