@@ -56,7 +56,7 @@ class Signin extends Component {
           <FormInput type="password" name="password" label="password" value={password} handleChange={this.handleChange} required />
           <p className={classes.signupLink}>
             Do not have an account?
-            <Link to="/register" exact>Sign up now</Link>
+            <Link to="/register">Sign up now</Link>
           </p>
           <div className={classes.buttons}>
             <CustomButton type="submit">Sign in</CustomButton>

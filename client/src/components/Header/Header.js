@@ -15,7 +15,7 @@ const header = ({ cartDropdownHidden, hideNewBook }) => {
   return (
     <nav className="navbar">
       <Logo className="navbar__logo" />
-      <Link to="/" exact className="navbar__dashboard">
+      <Link to="/" className="navbar__dashboard">
         <div className="navbar__site-name">BOOK MANDALA</div>
       </Link>
       {

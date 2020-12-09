@@ -6,10 +6,9 @@ import { filterCategory } from '../../redux/actions/book.actions';
 import './CategoryFilter.scss';
 import '../../../node_modules/font-awesome/css/font-awesome.min.css';
 
-const categoryFilter = ({ categoryFilter }) => {
+const categoryFilter = ({ filterCategory }) => {
   const handleFilter = event => {
-    categoryFilter(event.target.value);
-
+    filterCategory(event.target.value);
   };
 
   return (
@@ -35,12 +34,11 @@ const categoryFilter = ({ categoryFilter }) => {
 };
 
 const mapDispatchToProps = dispatch => ({
-  categoryFilter: filteredCategory => { dispatch(filterCategory(filteredCategory)) },
+  filterCategory: filteredCategory => { dispatch(filterCategory(filteredCategory)) },
 });
 
 categoryFilter.propTypes = {
-  bookCategories: PropTypes.instanceOf(Array).isRequired,
-  categoryHandler: PropTypes.func.isRequired,
+  filterCategory: PropTypes.func.isRequired,
 };
 
 export default connect(null, mapDispatchToProps)(categoryFilter);
