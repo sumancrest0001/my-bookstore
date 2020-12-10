@@ -85,5 +85,8 @@ const mapDispatchToProps = dispatch => ({
   addBookItem: bookItem => dispatch(addBookItem(bookItem)),
 });
 
+const mapStateToProps = state => ({
+  selectedBook: state.book.currentBook,
+});
 
-export default connect(null, mapDispatchToProps)(BookDetails);
+export default connect(mapStateToProps, mapDispatchToProps)(BookDetails);
