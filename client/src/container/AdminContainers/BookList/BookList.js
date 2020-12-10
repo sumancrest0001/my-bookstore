@@ -1,5 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
+import CategoryFilter from '../../../components/CategoryFilter/CategoryFilter';
 import Book from '../../../components/AdminComponents/Book/Book';
 
 const bookList = ({ availableBooks }) => {
@@ -15,6 +16,7 @@ const bookList = ({ availableBooks }) => {
 
   return (
     <div>
+      <CategoryFilter />
       {renderBooks}
     </div>
   );

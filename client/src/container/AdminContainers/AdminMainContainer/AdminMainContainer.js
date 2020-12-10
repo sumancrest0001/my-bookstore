@@ -5,7 +5,6 @@ import PropTypes from 'prop-types';
 import BookList from '../BookList/BookList';
 import BookForm from '../BookForm/BooksForm';
 import BookDetails from '../../../components/BookDetails/BookDetails';
-import CategoryFilter from '../../../components/CategoryFilter/CategoryFilter';
 import { bookStatus, category } from '../../../utilities/utility';
 
 const adminMainContainer = props => {
@@ -15,7 +14,6 @@ const adminMainContainer = props => {
 
   return (
     <main>
-      <CategoryFilter />
       <Switch>
         <Route path="/auth/edit/:id" component={BookForm} />
         <Route path="/auth/new-book" exact render={() => <BookForm bookCondition={bookStatus} categories={category} />} />

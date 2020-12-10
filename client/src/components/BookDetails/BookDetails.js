@@ -7,7 +7,7 @@ import { bookFilter } from '../../redux/actions/book.actions';
 import { addBookItem } from '../../redux/actions/cart.actions';
 class BookDetails extends Component {
   componentDidMount() {
-    const { match, filterSelectedBook, selectedBook } = this.props;
+    const { match, filterSelectedBook } = this.props;
     filterSelectedBook(match.params.id);
     /*     const collectionRef = firestore.collection("books").doc(match.params.id);
         collectionRef.get()
@@ -85,8 +85,5 @@ const mapDispatchToProps = dispatch => ({
   addBookItem: bookItem => dispatch(addBookItem(bookItem)),
 });
 
-const mapStateToProps = state => ({
-  selectedBook: state.book.currentBook,
-});
 
-export default connect(mapStateToProps, mapDispatchToProps)(BookDetails);
+export default connect(null, mapDispatchToProps)(BookDetails);

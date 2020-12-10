@@ -3,7 +3,7 @@ import firebase from 'firebase/app';
 import { Link } from 'react-router-dom';
 import FormInput from '../../FormInput/FormInput';
 import CustomButton from '../../CustomButton/CustomButton';
-import { provider, auth } from '../../../firebase/index';
+import { auth } from '../../../firebase/index';
 import classes from './Signin.module.scss';
 
 class Signin extends Component {
