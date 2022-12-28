@@ -1,11 +1,10 @@
 import React from 'react';
 import CategoryFilter from '../CategoryFilter/CategoryFilter';
-import SingleBook from '../SingleBook/SingleBook';
+import SingleBook from '../../components/SingleBook/SingleBook';
 import { connect } from 'react-redux';
 import './FilteredBookList.scss';
 
 const filteredBookList = ({ filteredBooks, filter }) => {
-
   return (
     <div className="filtered-books-list">
       <div className="filtered-books-list__header">

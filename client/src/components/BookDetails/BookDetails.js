@@ -25,7 +25,7 @@ class BookDetails extends Component {
 
   render() {
     const { selectedBook, admin, addBookItem } = this.props;
-
+     console.log('testttttt');
     const addCartDetails = (bookToDisplay) => {
       let cartDetails = null;
       if (!admin) {

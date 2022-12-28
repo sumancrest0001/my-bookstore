@@ -10,8 +10,10 @@ import CartDropdown from '../CartDropdown/CartDropdown';
 import { selectCartHidden } from '../../redux/reducers/cart.selector';
 
 import './Header.scss';
+import { selectCurrentUser } from '../../redux/reducers/user.selectors';
 
-const header = ({ cartDropdownHidden, hideNewBook }) => {
+const header = ({ cartDropdownHidden, hideNewBook, loggedInUser }) => {
+  console.log("🚀 ~ file: Header.js:16 ~ header ~ loggedInUser", loggedInUser)
   return (
     <nav className="navbar">
       <Logo className="navbar__logo" />
@@ -42,8 +44,12 @@ const header = ({ cartDropdownHidden, hideNewBook }) => {
       }
       <div className="navbar__icons">
         <UserIcon />
-        <FavoriteIcon />
-        <CartIcon />
+        {loggedInUser && (
+          <>
+            <FavoriteIcon />
+            <CartIcon />
+          </>
+        )}
       </div>
       {
         cartDropdownHidden ? null : <CartDropdown />
@@ -54,6 +60,7 @@ const header = ({ cartDropdownHidden, hideNewBook }) => {
 
 const mapStateToProps = createStructuredSelector({
   cartDropdownHidden: selectCartHidden,
+  loggedInUser: selectCurrentUser,
 });
 
 export default connect(mapStateToProps)(header);

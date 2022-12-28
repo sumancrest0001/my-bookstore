@@ -29,7 +29,7 @@
   }
   &__books {
     display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(150px, 15%));
+    grid-template-columns: repeat(auto-fit, minmax(200px, 15%));
     grid-gap: 1rem;
     margin: auto;
   }

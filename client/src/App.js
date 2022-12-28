@@ -66,7 +66,7 @@ class App extends Component {
       if (userAuth) {
         const userRef = await createUserProfileDocument(userAuth);
         userRef.onSnapshot(snapShot => {
-          const result = snapShot.data().email === 'suman.crest0001@gmail.com';
+          const result = snapShot.data().role === 'admin';
           const currentUser = {
             id: snapShot.id,
             ...snapShot.data(),
@@ -79,22 +79,22 @@ class App extends Component {
     });
   }
 
+  
+
   render() {
-    const { adminStatus, books } = this.props;
+    const { books, adminStatus } = this.props;
     return (
       <div className="App">
-        <Header hideNewBook={adminStatus} />
+        <Header hideNewBook={adminStatus}/>
         <Switch>
           <Route path="/signin" exact component={Signin} />
           <Route path="/register" exact component={Signup} />
           <Route path="/logout" exact component={Logout} />
-          {
-            adminStatus ? <Route path="/auth" component={AdminMainContainer} /> : null
-          }
+          <Route path="/auth" component={AdminMainContainer} />
           <Route path="/" exact render={() => <HomePage availableBooks={books} />} />
-          <Route path="/checkout" component={CheckoutPage} />
-          <Route path="/shop/book/category/:category" component={FilteredBookList} />
+          <Route path="/checkout" exact component={CheckoutPage} />
           <Route path="/shop/book/:id" render={props => <BookDetails {...props} />} />
+          <Route path="/shop/book/category/:category" component={FilteredBookList} />
         </Switch>
       </div>
     );
@@ -102,8 +102,8 @@ class App extends Component {
 }
 
 const mapStateToProps = state => ({
-  adminStatus: state.user.admin,
   books: state.book.books,
+  adminStatus: state.user.admin
 });
 
 const mapDispatchToProps = dispatch => ({

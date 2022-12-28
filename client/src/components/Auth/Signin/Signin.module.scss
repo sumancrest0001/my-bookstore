@@ -6,7 +6,7 @@
   background-color: #ebe8e8;
   margin: auto;
   margin-top: 40px;
-  padding: 5px;
+  padding: 1.5rem;
   -webkit-box-shadow: 6px -1px 5px -7px rgba(0,0,0,0.68);
   -moz-box-shadow: 6px -1px 5px -7px rgba(0,0,0,0.68);
   box-shadow: 6px -1px 5px -7px rgba(0,0,0,0.68);
@@ -25,10 +25,10 @@
 
 .buttons {
   display: flex;
-  justify-content: space-between;
+  gap: 3rem;
 }
 
 .signupLink {
   text-align: start;
-  margin: 1rem 0;
+  margin: 3rem 0;
 }
